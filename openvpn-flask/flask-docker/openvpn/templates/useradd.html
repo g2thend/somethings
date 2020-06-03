@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+   <p>
+    <a
+      class="btn btn-primary float-right"
+      href="/logout"
+      role="button"
+      style="margin-right: 10px"
+      >退出</a>
+    <a
+      class="btn btn-primary float-right"
+      href="/admin"
+      role="button"
+      style="margin-right: 10px"
+      >vpn-manager</a>
+    <a
+      class="btn btn-primary float-right"
+      href="/help"
+      role="button"
+      style="margin-right: 10px"
+      >Vpn客户端配置手册</a>
+  </p>
+  <br/>
+   <br/>
+   <br/>
+    <br/>
+    <br/> 
+   <center>
+    <form  action="/useradd"  method="POST">
+    <div class="form-group">
+        <textarea cols="20" rows="10"  name="users" >zhangsan
+lisi
+wanger</textarea>
+    </div>
+     <input type="submit" value="增加用户" class="btn btn-primary float-none" data-toggle="tooltip" data-placement="top" title="批量添加用户,默认密码为123456" /> 
+    </form>
+   </center>
+{% endblock %}
