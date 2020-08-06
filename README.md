@@ -42,7 +42,8 @@ lianjia  自己写,北京地区爬取
 
 #### 6,爬取拉钩
 
-lagousipder 爬取拉钩职位并保存于mongodb数据库,其中在抓取职位具体描述的时候可以使用自建代理池
+lagousipder 爬取拉钩职位并保存于mongodb数据库,其中在抓取职位具体描述的时候可以使用自建代理池.
+
 参考:   https://github.com/KeerZhou/crawllagou.git
 
 #### 7,高德地图展示
@@ -50,3 +51,4 @@ lagousipder 爬取拉钩职位并保存于mongodb数据库,其中在抓取职位
 根据上一个项目的数据,组成特别的数据格式后可以在高德地图上展示
 
 ![1596680594445](pic/1596680594445.png)
+
