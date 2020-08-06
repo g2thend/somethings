@@ -14,9 +14,7 @@
 
 在openvpn使用MySQL方面参考了https://github.com/Chocobozzz/OpenVPN-Admin
 
-#### 4,jenkins pdf
-
-#### 5,openvpn可视化管理
+#### 4,openvpn可视化管理
 
 2020-6-3
 
@@ -33,3 +31,22 @@
 ![1591193302998](pic/1591193302998.png)
 
 此外普通用户还可以修改自己密码,管理员批量添加密码固定123456的账号.
+
+#### 5,scrapy 小例子
+
+scrapy 目录小例子:
+example初级学习
+jiandann煎蛋爬取图片
+lianjia-other链家成交数据爬取_别人的例子
+lianjia  自己写,北京地区爬取
+
+#### 6,爬取拉钩
+
+lagousipder 爬取拉钩职位并保存于mongodb数据库,其中在抓取职位具体描述的时候可以使用自建代理池
+参考:   https://github.com/KeerZhou/crawllagou.git
+
+#### 7,高德地图展示
+
+根据上一个项目的数据,组成特别的数据格式后可以在高德地图上展示
+
+![1596680594445](pic/1596680594445.png)

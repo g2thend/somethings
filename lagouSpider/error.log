@@ -1,0 +1,266 @@
+ 2020-07-08 22:15:01 |  __main__ | 156 | An error has been caught in function '<module>', process 'MainProcess' (23115), thread 'MainThread' (140601983727360):
+Traceback (most recent call last):
+
+> File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 156, in <module>
+    lagou.optimize_job_detail()
+    │     └ <function CrawlLaGou.optimize_job_detail at 0x7fe06cf5e7b8>
+    └ <__main__.CrawlLaGou object at 0x7fe0713262b0>
+
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 100, in optimize_job_detail
+    for job_address in self.save_data.job_site():
+        │              │    │         └ <function HandleMongodb.job_site at 0x7fe06df57f28>
+        │              │    └ <lagouSpider.mongodb.HandleMongodb object at 0x7fe06dfb4f28>
+        │              └ <__main__.CrawlLaGou object at 0x7fe0713262b0>
+        └ '北京-海淀区-北京市海淀区北三环西路43号中航广场'
+
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+           │               │    └ <function Cursor._refresh at 0x7fe06e85db70>
+           │               └ <pymongo.cursor.Cursor object at 0x7fe06dc9a0f0>
+           └ <pymongo.cursor.Cursor object at 0x7fe06dc9a0f0>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/cursor.py", line 1093, in _refresh
+    self.__send_message(g)
+    │                   └ <pymongo.message._GetMore object at 0x7fe06db917c8>
+    └ <pymongo.cursor.Cursor object at 0x7fe06dc9a0f0>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/cursor.py", line 955, in __send_message
+    address=self.__address)
+            └ <pymongo.cursor.Cursor object at 0x7fe06dc9a0f0>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1346, in _run_operation_with_response
+    exhaust=exhaust)
+            └ False
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1464, in _retryable_read
+    return func(session, server, sock_info, slave_ok)
+           │    │        │       │          └ True
+           │    │        │       └ SocketInfo(<socket.socket fd=6, family=AddressFamily.AF_INET, type=524289, proto=6, laddr=('192.168.190.1', 59770), raddr=('1...
+           │    │        └ <pymongo.server.Server object at 0x7fe06cf59e10>
+           │    └ <pymongo.client_session.ClientSession object at 0x7fe06dc9a240>
+           └ <function MongoClient._run_operation_with_response.<locals>._cmd at 0x7fe070fbcbf8>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1340, in _cmd
+    unpack_res)
+    └ <bound method Cursor._unpack_response of <pymongo.cursor.Cursor object at 0x7fe06dc9a0f0>>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/server.py", line 136, in run_operation_with_response
+    _check_command_response(first)
+    │                       └ {'ok': 0.0, 'errmsg': 'cursor id 3714989804954061470 not found', 'code': 43, 'codeName': 'CursorNotFound'}
+    └ <function _check_command_response at 0x7fe06f0f5e18>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/helpers.py", line 156, in _check_command_response
+    raise CursorNotFound(errmsg, code, response)
+          │              │       │     └ {'ok': 0.0, 'errmsg': 'cursor id 3714989804954061470 not found', 'code': 43, 'codeName': 'CursorNotFound'}
+          │              │       └ 43
+          │              └ 'cursor id 3714989804954061470 not found'
+          └ <class 'pymongo.errors.CursorNotFound'>
+
+pymongo.errors.CursorNotFound: cursor id 3714989804954061470 not found
+2020-07-08 22:25:46 |  __main__ | 159 | An error has been caught in function '<module>', process 'MainProcess' (11027), thread 'MainThread' (140541623326464):
+Traceback (most recent call last):
+
+> File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 159, in <module>
+    lagou.optimize_job_detail()
+    │     └ <function CrawlLaGou.optimize_job_detail at 0x7fd25f335730>
+    └ <__main__.CrawlLaGou object at 0x7fd2636fc2b0>
+
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 103, in optimize_job_detail
+    if job_address['jobDescribe'] == '':
+       └ {'jobSite': 'https://www.lagou.com/jobs/7389849.html'}
+
+KeyError: 'jobDescribe'
+2020-07-08 22:56:47 |  __main__ | 159 | An error has been caught in function '<module>', process 'MainProcess' (25179), thread 'MainThread' (140020743345920):
+Traceback (most recent call last):
+
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 137, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+     │    │     │    │      │    │          └ {'socket_options': [(6, 1, 1)]}
+     │    │     │    │      │    └ None
+     │    │     │    │      └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+     │    │     │    └ 443
+     │    │     └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+     │    └ 'www.lagou.com'
+     └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+
+  File "/usr/lib/python3/dist-packages/urllib3/util/connection.py", line 67, in create_connection
+    for res in socket.getaddrinfo(host, port, 0, socket.SOCK_STREAM):
+               │      │           │     │        │      └ <SocketKind.SOCK_STREAM: 1>
+               │      │           │     │        └ <module 'socket' from '/usr/lib/python3.6/socket.py'>
+               │      │           │     └ 443
+               │      │           └ 'www.lagou.com'
+               │      └ <function getaddrinfo at 0x7f591c608d90>
+               └ <module 'socket' from '/usr/lib/python3.6/socket.py'>
+
+  File "/usr/lib/python3.6/socket.py", line 745, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               │       │           │     │     │       │     │      └ 0
+               │       │           │     │     │       │     └ 0
+               │       │           │     │     │       └ <SocketKind.SOCK_STREAM: 1>
+               │       │           │     │     └ 0
+               │       │           │     └ 443
+               │       │           └ 'www.lagou.com'
+               │       └ <built-in function getaddrinfo>
+               └ <module '_socket' (built-in)>
+
+socket.gaierror: [Errno -3] Temporary failure in name resolution
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 560, in urlopen
+    body=body, headers=headers)
+         │             └ {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)', 'Accept-Encoding': 'gzip, ...
+         └ None
+
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+    │    │              └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+    │    └ <function HTTPSConnectionPool._validate_conn at 0x7f591a7d2510>
+    └ <requests.packages.urllib3.connectionpool.HTTPSConnectionPool object at 0x7f5917700438>
+
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 787, in _validate_conn
+    conn.connect()
+    │    └ <function VerifiedHTTPSConnection.connect at 0x7f591a7c7158>
+    └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 217, in connect
+    conn = self._new_conn()
+           │    └ <function HTTPConnection._new_conn at 0x7f591a79ed90>
+           └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 146, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+    └ <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>
+
+requests.packages.urllib3.exceptions.NewConnectionError: <requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 376, in send
+    timeout=timeout
+            └ <requests.packages.urllib3.util.timeout.Timeout object at 0x7f5917700278>
+
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 610, in urlopen
+    _stacktrace=sys.exc_info()[2])
+                │   └ <built-in function exc_info>
+                └ <module 'sys' (built-in)>
+
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 283, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+          │             │      │    │        │             └ 'unknown'
+          │             │      │    │        └ <class 'requests.packages.urllib3.exceptions.ResponseError'>
+          │             │      │    └ NewConnectionError('<requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>: Failed to establ...
+          │             │      └ '/jobs/7295649.html'
+          │             └ <requests.packages.urllib3.connectionpool.HTTPSConnectionPool object at 0x7f5917700438>
+          └ <class 'requests.packages.urllib3.exceptions.MaxRetryError'>
+
+requests.packages.urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='www.lagou.com', port=443): Max retries exceeded with url: /jobs/7295649.html (Caused by NewConnectionError('<requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution',))
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+> File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 159, in <module>
+    lagou.optimize_job_detail()
+    │     └ <function CrawlLaGou.optimize_job_detail at 0x7f59187409d8>
+    └ <__main__.CrawlLaGou object at 0x7f591c9202b0>
+
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 110, in optimize_job_detail
+    job_resp = requests.get(job_url, proxies=proxies, headers=self.header).text
+               │        │   │                │                │    └ {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'}
+               │        │   │                │                └ <__main__.CrawlLaGou object at 0x7f591c9202b0>
+               │        │   │                └ {'http': 'http://191.232.176.187:80'}
+               │        │   └ 'https://www.lagou.com/jobs/7295649.html'
+               │        └ <function get at 0x7f591a7d6268>
+               └ <module 'requests' from '/usr/lib/python3/dist-packages/requests/__init__.py'>
+
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 67, in get
+    return request('get', url, params=params, **kwargs)
+           │              │           │         └ {'proxies': {'http': 'http://191.232.176.187:80'}, 'headers': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Apple...
+           │              │           └ None
+           │              └ 'https://www.lagou.com/jobs/7295649.html'
+           └ <function request at 0x7f591a839ae8>
+
+  File "/usr/lib/python3/dist-packages/requests/api.py", line 53, in request
+    return session.request(method=method, url=url, **kwargs)
+           │       │              │           │      └ {'params': None, 'proxies': {'http': 'http://191.232.176.187:80'}, 'headers': {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; W...
+           │       │              │           └ 'https://www.lagou.com/jobs/7295649.html'
+           │       │              └ 'get'
+           │       └ <function Session.request at 0x7f591a7dc9d8>
+           └ <requests.sessions.Session object at 0x7f591a7faac8>
+
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 480, in request
+    resp = self.send(prep, **send_kwargs)
+           │    │    │       └ {'timeout': None, 'allow_redirects': True, 'verify': True, 'proxies': OrderedDict([('http', 'http://191.232.176.187:80')]), '...
+           │    │    └ <PreparedRequest [GET]>
+           │    └ <function Session.send at 0x7f591a7dce18>
+           └ <requests.sessions.Session object at 0x7f591a7faac8>
+
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 588, in send
+    r = adapter.send(request, **kwargs)
+        │       │    │          └ {'timeout': None, 'verify': True, 'proxies': OrderedDict([('http', 'http://191.232.176.187:80')]), 'stream': False, 'cert': N...
+        │       │    └ <PreparedRequest [GET]>
+        │       └ <function HTTPAdapter.send at 0x7f591a7dc488>
+        └ <requests.adapters.HTTPAdapter object at 0x7f59177007b8>
+
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 437, in send
+    raise ConnectionError(e, request=request)
+          │                          └ <PreparedRequest [GET]>
+          └ <class 'requests.exceptions.ConnectionError'>
+
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='www.lagou.com', port=443): Max retries exceeded with url: /jobs/7295649.html (Caused by NewConnectionError('<requests.packages.urllib3.connection.VerifiedHTTPSConnection object at 0x7f5917700160>: Failed to establish a new connection: [Errno -3] Temporary failure in name resolution',))
+2020-07-12 00:22:49 |  __main__ | 190 | An error has been caught in function '<module>', process 'MainProcess' (2666), thread 'MainThread' (140276277524224):
+Traceback (most recent call last):
+
+> File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 190, in <module>
+    lagou.optimize_job_detail()
+    │     └ <function CrawlLaGou.optimize_job_detail at 0x7f94975bea60>
+    └ <__main__.CrawlLaGou object at 0x7f949b98a400>
+
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/lagouSpider/crawlTest.py", line 128, in optimize_job_detail
+    for job_address in self.save_data.job_site():
+        │              │    │         └ <function HandleMongodb.job_site at 0x7f949860d0d0>
+        │              │    └ <lagouSpider.mongodb.HandleMongodb object at 0x7f94985d1f60>
+        │              └ <__main__.CrawlLaGou object at 0x7f949b98a400>
+        └ {'jobDescribe': '', 'jobSite': 'https://www.lagou.com/jobs/6852340.html'}
+
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/cursor.py", line 1156, in next
+    if len(self.__data) or self._refresh():
+           │               │    └ <function Cursor._refresh at 0x7f9498eb6c80>
+           │               └ <pymongo.cursor.Cursor object at 0x7f9499608e48>
+           └ <pymongo.cursor.Cursor object at 0x7f9499608e48>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/cursor.py", line 1093, in _refresh
+    self.__send_message(g)
+    │                   └ <pymongo.message._GetMore object at 0x7f94981f3648>
+    └ <pymongo.cursor.Cursor object at 0x7f9499608e48>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/cursor.py", line 955, in __send_message
+    address=self.__address)
+            └ <pymongo.cursor.Cursor object at 0x7f9499608e48>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1346, in _run_operation_with_response
+    exhaust=exhaust)
+            └ False
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1464, in _retryable_read
+    return func(session, server, sock_info, slave_ok)
+           │    │        │       │          └ True
+           │    │        │       └ SocketInfo(<socket.socket fd=6, family=AddressFamily.AF_INET, type=524289, proto=6, laddr=('192.168.190.1', 37738), raddr=('1...
+           │    │        └ <pymongo.server.Server object at 0x7f94975baef0>
+           │    └ <pymongo.client_session.ClientSession object at 0x7f94982fa8d0>
+           └ <function MongoClient._run_operation_with_response.<locals>._cmd at 0x7f949d976378>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/mongo_client.py", line 1340, in _cmd
+    unpack_res)
+    └ <bound method Cursor._unpack_response of <pymongo.cursor.Cursor object at 0x7f9499608e48>>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/server.py", line 136, in run_operation_with_response
+    _check_command_response(first)
+    │                       └ {'ok': 0.0, 'errmsg': 'cursor id 8466584473044659128 not found', 'code': 43, 'codeName': 'CursorNotFound'}
+    └ <function _check_command_response at 0x7f94997c1f28>
+  File "/home/baixiaoxu/PycharmProjects/crawllagou/venv/lib/python3.6/site-packages/pymongo/helpers.py", line 156, in _check_command_response
+    raise CursorNotFound(errmsg, code, response)
+          │              │       │     └ {'ok': 0.0, 'errmsg': 'cursor id 8466584473044659128 not found', 'code': 43, 'codeName': 'CursorNotFound'}
+          │              │       └ 43
+          │              └ 'cursor id 8466584473044659128 not found'
+          └ <class 'pymongo.errors.CursorNotFound'>
+
+pymongo.errors.CursorNotFound: cursor id 8466584473044659128 not found
