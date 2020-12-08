@@ -10,11 +10,11 @@
 
 获取评论截图后还可以生成gif
 
-#### 3,flask-openvpn-UI
+#### 3,flask-open-UI
 
-在openvpn使用MySQL方面参考了https://github.com/Chocobozzz/OpenVPN-Admin
+使用MySQL方面参考了https://github.com/Chocobozzz/OpenVPN-Admin
 
-#### 4,openvpn可视化管理
+#### 4,可视化管理
 
 2020-6-3
 
@@ -22,13 +22,6 @@
 
 管理员账号为admin/123456
 
-![1591193134048](pic/1591193134048.png)
-
-![1591193231277](pic/1591193231277.png)
-
-![1591193283251](pic/1591193283251.png)
-
-![1591193302998](pic/1591193302998.png)
 
 此外普通用户还可以修改自己密码,管理员批量添加密码固定123456的账号.
 
