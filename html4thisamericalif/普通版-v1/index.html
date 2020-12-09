@@ -1,0 +1,177 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+        #html {
+        width: 60%;
+        height: auto;
+        margin: auto;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        }
+    </style>
+    <!-- <script type="text/javascript" src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script> -->
+    <script type="text/javascript" src="jquery-1.7.2-min.js"></script>   
+    <!-- jspdf使用， 打印汉字 TODO: 文字过长自动换行 -->
+    <!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>    -->
+    <script type="text/javascript" src = "jspdf-1.3.4-min.js"></script>
+    <script src="jspdf.customfonts.min.js"></script>
+    <script src="default_vfs.js"></script> 
+</head>
+<body>
+    <div>
+        <p>
+            <!--target配置说明是在新标签页中打开链接-->
+            <a href="https://www.cnblogs.com/g2thend/p/13278446.html"  target="_blank">打开以帮助你哟^_^</a>
+        </p>
+        <br/>
+    </div>
+    <div>    
+        <fieldset>
+            <legend>百度翻译API</legend>
+            账号：<input type="text" name="mid" style="text-align:center;">
+            密钥：<input type="text" name="msecu" style="text-align:center;">
+            <button type="button_test">翻译api验证</button>
+        </fieldset>
+        <fieldset>
+            <legend>thisamericanlife</legend>
+            年份：<input type="text" name="year" style="text-align:center;">
+            序号：<input type="text" name="script" style="text-align:center;">
+        </fieldset>
+        <fieldset>
+            <legend>保存选项</legend>
+            保存位置：<input   type=button   value="hah"  id='btn'  onclick="document.execCommand('SaveAs')">
+            <button type="button_save">保存</button>
+        </fieldset>
+    </div>
+
+<div id="html"></div>
+
+</body>
+
+
+<script>
+    /*  只有$.get执行时会调用他进行过滤使用, 目前可以不用
+    $.ajaxPrefilter(function (options) {
+        if (options.crossDomain && jQuery.support.cors) {
+            var http = (window.location.protocol === 'http:' ? 'http:' : 'https:');
+            options.url = http + '//cors-anywhere.herokuapp.com/' + options.url;
+            // options.url = "http://cors.corsproxy.io/url=" + options.url;
+        }
+    });
+    */
+
+    $.get(
+        // 'https://www.thisamericanlife.org/720/transcript',
+        'https://cors-anywhere.herokuapp.com/https://www.thisamericanlife.org/720/transcript', // 获取剧本
+        // 'https://cors-anywhere.herokuapp.com/https://www.thisamericanlife.org/archive?year=2020', // 获取指定年份下的归档
+        function (response) {
+            // $("#html").html(response); // 暂时没有用处
+            var htmlObj = $(response);
+            var filterObj = htmlObj.find("article");  //正常获取剧本的内容
+            // var filterObj = htmlObj.find(".nodes"); // 获取成功，但是没有渲染，显示比较丑
+            $("#html").html($(filterObj[0]).html());
+        });
+         
+         //  控制台操作
+        // ps = $(".content p");
+        // $.each(ps, function(i,val){     
+        //  alert(i);  
+        //  alert(val.outerHTML);
+        // });  
+    
+        //  获取title  $("#html header h1").text()
+        //  获取note   $("#html header .field-name-field-notes").text()
+        //  获取发言人 h4s = $("#html .content h4");   获取h4 列表  
+        //  h4s[2].innerText  h4s[2].textContent
+        //  根据h4 发言人节点，获取发言人兄弟p节点  发言内容
+        //  h4s[0].parentNode.getElementsByTagName("p")[3].textContent   注意为空的判断
+        //  获取内标签， 主要获取开始时间
+        //  h4s[0].parentNode.getElementsByTagName("p")[0].outerHTML
+        //  示例： "<p begin="00:00:01.04"> Florida is crucial this election. Florida, Florida, Florida. One of the people who thinks about that a lot is Kevin Sheekey. He's the guy whose job it is to spend $100 million that billionaire Mike Bloomberg has devoted to winning Florida for Joe Biden.</p>"
+        //  获取标签内开始时间属性
+        //  h4s[0].parentNode.getElementsByTagName("p")[0].getAttribute("begin")
+        //  时间分割  
+        //  s = h4s[0].parentNode.getElementsByTagName("p")[0].getAttribute("begin")  结果1： "00:00:01.04"
+        //  s.substring(s.indexOf(":")+1)         结果2： "00:01.04"
+    
+    // 以下为纯文本生成的pdf
+    
+    // Default export is a4 paper, portrait, using millimeters for units
+    // $('#html').css("background", "#fff");
+    var doc = new jsPDF();
+    
+    doc.addFont('NotoSansCJKtc-Regular.ttf', 'NotoSansCJKtc', 'normal');
+    doc.setFont('NotoSansCJKtc');
+    doc.setFontSize(10);
+    // doc.text(20, 180, '简体中文、繁體体中文、English、ジャパン、한국어、你好啊');
+
+    // doc.text("This is the default font---------test as  you  know she is a bicth in beach  you know but do you wanna to cry  wait dont wait .", 20, 20);
+
+    // doc.setFont("courier", "normal");
+    // doc.text("This is courier normal", 20, 30);
+
+    // doc.setFont("times", "italic");
+    // doc.text("This is times italic.", 20, 40);
+
+    // doc.setFont("helvetica", "bold");
+    // doc.text("This is helvetica bold.", 20, 50);
+
+    // doc.setFont("courier", "bolditalic");
+    // doc.text("This is courier bolditalic.", 20, 60);
+
+    // doc.setFont("times", "normal");
+    // doc.text("This is centred text.", 105, 80, null, null, "center");
+    // doc.text("And a little bit more underneath it.", 105, 90, null, null, "center");
+    // doc.text("This is right aligned text", 200, 100, null, null, "right");
+    // doc.text("And some more", 200, 110, null, null, "right");
+    // doc.text("Back to left", 20, 120);
+
+    // doc.text("10 degrees rotated", 20, 140, null, 10);
+    // doc.text("-10 degrees rotated", 20, 160, null, -10);
+
+
+    // doc.setFont('NotoSansCJKtc');
+ 
+    // doc.text(20, 180, '180简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 200, '200简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 220, '220简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 240, '240简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 260, '260简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 280, '280简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 300, '300简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 320, '320简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 340, '340简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 360, '360简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 380, '380简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 400, '400简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 420, '420简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 440, '440简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 460, '460简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 480, '480简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 520, '520简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 540, '540简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.text(20, 560, '560简体中文、繁體体中文、English、ジャパン、한국어、你好啊，真是太好了哟，真是的');
+    // doc.save('test.pdf');
+
+    // 此版可以使用以下生成pdf, 不过生成的是图片pdf,且设置的字体大小并不生效
+    // doc.addHTML($('#html'), function(){
+    // doc.output("save", "111.pdf")
+    // });
+
+    
+    
+
+</script>
+</html>

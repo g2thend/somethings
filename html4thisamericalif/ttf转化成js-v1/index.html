@@ -1,0 +1,538 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link   type="text/css" rel="stylesheet" href="bootstrap-4.5.3-min.css" >
+    <style>
+        html body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            font-size: 8;
+        }
+        #html {
+        width: 400px;
+        height: auto;
+        margin: auto; 
+        position: relative;
+        float: left;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        }
+        article {
+            width: 200px;
+            height: 200px;
+        }
+        .article {
+            float: left;
+        }
+        #pdf {
+        width: 60%;
+        height: auto;
+        margin: auto;
+        position: left;
+        float: left;
+        top: 0;
+        left: 1px;
+        right: 0;
+        bottom: 0;
+        }
+        h4 {
+            line-height: 2px;
+            margin: 0 5px 0 0;
+            font: 10 14px/10px "maiola",serif;
+            float: left;
+        }
+        fieldset {
+        padding: .35em .625em .75em;
+        margin: 0 2px;
+        border: 1px solid silver;
+        }
+
+        legend {
+            padding: .5em;
+            border: 0;
+            width: auto;
+            margin-bottom: 0px;
+            font-size: 5;
+        }
+       .bg {
+       background:url("bg.jpg") no-repeat center fixed;
+       background-size:cover;
+       
+        }
+        .btn{
+            margin:0.5px;
+            font-size:1px;
+            padding: 0.2;
+        }
+
+        .box {
+        /* position: absolute; */
+        position: fixed;
+        right: 30px;
+        top: 30px;
+        }
+        .selectInput {
+            position:absolute; 
+            margin-left:15px;
+            padding-left:10px;
+            width:130px;
+            height:25px;
+            left:1px;
+            top:2px;
+            border-bottom:0px;
+            border-right:0px;
+            border-left:0px;
+            border-top:0px;
+        }
+
+    </style>
+    <!-- <script type="text/javascript" src="jquery-1.7.2-min.js"></script>  -->
+    <script src="http://apps.bdimg.com/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="md5.js"></script>  
+    <!-- <script type="text/javascript" src="jspdf-1.5.3-min.js"></script>     
+    <script type="text/javascript" src="sourcehansanssc-normal-normal.js"></script> -->
+
+</head>
+<body class="bg">
+    <div class="container-xl">
+        <div class="text-center" >
+                <br>
+                <br>
+                <h2>thisamericanlife 剧本英中翻译</h2>
+                <br>
+                <br>
+        </div>
+
+        <div class="box">
+            <br/>
+            <a href="https://www.cnblogs.com/g2thend/p/14106411.html" class="badge badge-success float-right am-radius" target="_blank">点我获取帮助哟^_^</a>
+            <br/>
+            <fieldset>
+                <legend>百度翻译API</legend>
+                <div class="input-group input-group-sm mb-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >账号</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" id="veryify_id_user">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" >密钥</span>
+                    </div>
+                    <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" vlaue="" id="veryify_id_passwd">
+                </div>
+
+                <!-- <button type="button_veryify" class="text-info float-right" >账号验证</button> -->
+                <button type="button" class="btn btn-primary btn-sm" id="veryify_id">账号验证</button>
+            </fieldset>
+            <fieldset>
+                <legend>thisamericanlife剧集</legend>
+                <div class="input-group input-group-sm mb-6">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm-1">剧集</span>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="" id='episode_id' > 
+                </div>
+            </fieldset>
+            <button type="button" class="btn btn-primary btn-xs" id="episode_id_click">获取剧本</button>
+            <br>
+            <button type="button" class="btn btn-primary btn-xs" id="episode_trans">翻译</button>
+            <br>
+            <button type="button" class="btn btn-primary btn-xs" id="download">DOWNLOAD pdf&lrc</button>
+            <div class="text-wrap" style="width: 12rem;">
+                <br>
+                《美国生活》是每周的公共广播节目和播客。每周我们选择一个主题，并将不同类型的故事放在一起。
+                <br/>
+                <br/>
+                <a href="https://www.pexels.com/photo/green-leaves-1454794/">背景图片来源</a>
+            </div>
+        </div>
+
+        <div id="html" class="float-left" >
+              <!-- <div class="article" >
+                    <article >
+                        <header>
+                        <figure><img src="https://hw2.thisamericanlife.org/sites/default/files/styles/archive/public/episodes/images/ten_sessions-show_image.jpg" width="100" height="50" alt=""></figure></a>
+                        <span >682 Nov. 20, 2020</span>
+                        <h6>Ten Sessions</h6>
+                        </header>
+                        <p>A&nbsp;therapy that helps people work through unhealed trauma in just ten sessions.</p>
+                    </article>
+                </div> -->
+               
+        </div>
+
+        <div id="pdf">
+            
+        </div>
+    </div>
+</body>
+<script>
+
+    // 获取剧本
+    // 获取指定的thisamericanlife
+    // $.get(
+    //     // 'https://www.thisamericanlife.org/720/transcript',
+    //     // 'https://cors-anywhere.herokuapp.com/https://www.thisamericanlife.org/720/transcript', // 获取剧本
+    //     'https://cors-anywhere.herokuapp.com/https://www.thisamericanlife.org/archive', // 获取指定年份下的归档
+    //     function (response) {
+    //         // $("#html").html(response); // 暂时没有用处
+    //         var htmlObj = $(response);
+    //         var filterObj = htmlObj.find("article");  //正常获取剧本的内容
+    //         // var filterObj = htmlObj.find(".nodes"); // 获取成功，但是没有渲染，显示比较丑
+    //         var article = new Array() ;
+    //         for (i = 0; i < filterObj.length; i++) { 
+                    
+    //              } 
+
+    //         $("#html").html(html_str);
+    //     });
+
+
+
+    // ajax获取归档,抽取主要信息并展示
+      
+
+    $(function(){
+                
+        //点击事件
+        $("#episode_id_click").click(function(){
+            var es = $("#episode_id")[0].value ;
+            if (es == "") {
+                alert("请输入剧集编号如:725");
+            }
+            else {
+                $.get(
+                'https://cors-anywhere.herokuapp.com/https://www.thisamericanlife.org/' + es +'/transcript', // 获取剧本
+                function (response) {
+                    var htmlObj = $(response);
+                    var h4s = htmlObj.find("article .content h4");  
+                    var ps = htmlObj.find("article .content p");
+                    $("#pdf").empty();
+                    for (i =0; i < h4s.length; i++) {
+                        $("#pdf").append(h4s[i].outerHTML);
+                        $("#pdf").append(ps[i].outerHTML);
+                    }
+                    });
+            }
+            });
+        
+        // 下载歌词
+        $("#download").click(function(){
+            var ps = $("#pdf p");
+            var data = "";
+            for (i =0; i < ps.length; i++) {
+                    tmp = "[" + ps[i].outerHTML.match(/(\d+:\d+\.\d+)/g) + "] " + ps[i].innerText + "\n"
+                    data = data +tmp
+            }
+            download("719.lrc",data);
+
+        });
+        
+        // 验证百度翻译账号是否正常
+        $("#veryify_id").click(function(){
+            var appid = $("#veryify_id_user")[0].value;
+            var key = $("#veryify_id_passwd")[0].value;
+            // alert("user:" + appid + "\n" + "key:" + key)
+            if ( appid == "" || key == "") {
+                alert("请输入百度翻译账号及密码");
+            }
+            else {
+                // var appid = '2015063000000001';
+                // var key = '12345678';
+                var salt = (new Date).getTime();
+                var query = 'apple';
+                var from = 'en';
+                var to = 'zh';
+                var str1 = appid + query + salt +key;
+                var sign = MD5(str1);
+                $.ajax({
+                    url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+                    type: 'get',
+                    dataType: 'jsonp',
+                    data: {
+                        q: query,
+                        appid: appid,
+                        salt: salt,
+                        from: from,
+                        to: to,
+                        sign: sign
+                    },
+                    success: function (data) {
+                       if (data['from'] == "en") {
+                           alert("账号及密码正确");
+                       }
+                       else {
+                        //    alert(data);
+                        //    console.log(data);
+                        alert("请检查账号密码是否异常!!!");
+                       }
+                    } 
+                });
+
+            }
+        });
+
+        // 通过百度api翻译,但是因为消耗时间过多,就不做了
+        $("#episode_trans").click(function(){
+            // alert("translate")
+            // var appid = '2019120XXXXXXX';
+            // var key = 'mLWEFGTYHVSRRHHHURAGETpy';
+            var appid = $("#veryify_id_user")[0].value;
+            var key = $("#veryify_id_passwd")[0].value;
+            // alert("user:" + appid + "\n" + "key:" + key);
+            var salt = (new Date).getTime();
+            //var query = 'Some people, they read those old stories from 3,000 years ago, The Iliad and The Odyssey. They read them in school, and it just gets to them. One of the producers here at our show, Emanuele, was like that.';
+            // 多个query可以用\n连接  如 query='apple\norange\nbanana\npear'
+            var from = 'en';
+            var to = 'zh';
+            // var str1 = appid + query + salt +key;
+            // var sign = MD5(str1);
+            var trans_ps = $("#pdf p");
+            var tt_arry = new Array;
+            var myajax='';
+            // for (i=0; i < trans_ps.length; i++) {
+            //  因为翻译量过大导致浏览器卡死,这里只翻译了10条测试
+            for (i=0; i < 10; i++) {
+                var query = trans_ps[i].innerText;
+                var str1 = appid + query + salt +key;
+                var sign = MD5(str1);
+                if (sleep(5000)) {//休眠3秒
+                    // console.log("new p")
+                    // alert("new p")
+                    myajax=$.ajax({
+                    url: 'http://api.fanyi.baidu.com/api/trans/vip/translate',
+                    type: 'get',
+                    dataType: 'jsonp',
+                    data: {
+                        q: query,
+                        appid: appid,
+                        salt: salt,
+                        from: from,
+                        to: to,
+                        sign: sign
+                    },
+                    success: function (data) {
+                        tt_arry.push(data['trans_result'][0]['dst']);
+                        // alert(data['trans_result'][0]['dst']);
+                        } 
+                    });
+                }
+            }
+            $.when(myajax).done(function () {
+            //等到异步翻译接口完成之后才开始,否则,翻译没有完成,但是下面代码已经执行
+             for (x=0; x < tt_arry.length; x++) {
+                var txt = document.createElement("span");
+                var pp = document.createElement("br");
+                txt.innerText = tt_arry[x];
+                trans_ps[x].appendChild(pp);
+                trans_ps[x].appendChild(txt);
+                }
+             });
+    
+        });
+
+        // 自动获取归档
+        $.get(
+        'https://cors-anywhere.herokuapp.com/https://www.thisamericanlife.org/archive', // 获取指定年份下的归档
+        function (response) {
+            var htmlObj = $(response);
+            var str1 = '<div class="article"><article ><header><figure><img src="';
+            var str2 = '" width="100" height="50" alt=""></figure><span>';
+            var str3 = '</span><h6>';
+            var str4 = '</h6></header><p>';
+            var str5 = '</p></div>';
+            var filterObj = htmlObj.find("article");  //正常获取剧本的内容
+            for (i = 0; i < filterObj.length; i++) {
+                str = str1 + filterObj[i].getElementsByTagName("img")[0].getAttribute('src') + str2;
+                str = str + filterObj[i].getElementsByClassName("field-label-hidden")[0].innerText + " " + filterObj[i].getElementsByClassName("field-label-hidden")[1].innerText + str3;
+                str = str + filterObj[i].getElementsByTagName("h2")[0].innerText + str4;
+                str = str + filterObj[i].getElementsByClassName("content")[0].innerText + str5;
+                $("#html").append(str)
+            }
+        });
+        
+
+        // 下载歌词函数,生成统一的歌词文件
+        function download(filename, text) {
+            var element = document.createElement('a');
+            element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+            element.setAttribute('download', filename);
+            
+            element.style.display = 'none';
+            document.body.appendChild(element);
+            
+            element.click();
+            
+            document.body.removeChild(element);
+            }
+        // download("hello.txt","This is the content of my file :)");
+        
+
+        // sleep x s 后执行,目前没有啥用(虽然用了他)
+        function sleep(numberMillis) {
+            var now = new Date();
+            var exitTime = now.getTime() + numberMillis;
+            while (true) {
+                now = new Date();
+                if (now.getTime() > exitTime)
+                    return true;
+            }
+        }
+    });
+
+
+    //  歌词匹配  ps[3].outerHTML.match(/(\d+:\d+\.\d+)/g)
+    
+
+
+
+    // 
+    //
+    // jspdf 
+    // 1，使用jspdf 内置的fontconverter 转换器将开源的思源字体ttf 转化为js, ttf 字体文件的名字全部小写
+    // 2，修改转化完成的js, 删除多余的行数， 只保留var font='....'变量
+    // 3，在html 引入转化成功的font js文件, 并确保jspdf 版本号大于1.4.0
+    // 4，使用如下代码操作
+    // 5， 参考：
+    // https://blog.csdn.net/huanhuan03/article/details/105841653
+    // https://www.cnblogs.com/chiikin/p/11968998.html
+    // https://segmentfault.com/a/1190000016324962
+
+
+    //分割**************************************************************************************
+    // 汉字换行测试：成功  2020/11/04
+    // 参考：  https://www.hangge.com/blog/cache/detail_2206.html
+    //        https://blog.csdn.net/yzjyhp/article/details/49980847
+    // Default export is a4 paper, portrait, using millimeters for units
+    // addFileToVFS 要求jspdf 版本大于1.5.0  参数以上一个为准，最后一个参数不变
+
+    // 最完美的测试啊  @TODO:  判断是否写满了一页，添加新的一页
+
+    // var doc = new jsPDF('p','in');
+    // doc.addFileToVFS('sourcehansanssc-normal-normal.ttf', font);   
+    // doc.addFont('sourcehansanssc-normal-normal.ttf', 'sourcehansanssc-normal', 'normal');  
+    // doc.setFont('sourcehansanssc-normal');  // 设置字体
+    // doc.setFontSize(8);
+    // size=8;
+    // var words = '从各方面反馈的意见看，大家一致认为，在“两个一百年”历史交汇点上，党的十九届五中全会重点研究“十四五”规划问题并提出建议，将“十四五”规划与2035年远景目标统筹考虑，对动员和激励全党全国各族人民，战胜前进道路上各种风险挑战，为全面建设社会主义现代化国家开好局、起好步，具有十分重要的意义';
+    // var verticalOffset = 0.5;
+    // lines = doc.setFont('sourcehansanssc-normal')
+    //            .setFontSize(size)
+    //            .splitTextToSize(words, 7.5)
+    // doc.text(0.5, verticalOffset + size / 72, lines)
+    // verticalOffset = verticalOffset + (size / 72)*(lines.length + 1);  // 不同的段落流出空白，一行的高度乘以行数的加一，意思是多空出一行留白
+    // var words = '当日的节目视频显示，丁学伟先是怼前台湾“陆委会”副主委赵建民“两岸关系已进入准战争状态”，“两岸要避险”的说法，声称“避什么险啦，把台湾人恫吓的，你以为台湾是被你吓大的吗？';
+    // lines = doc.splitTextToSize(words, 7.5)
+    // doc.text(0.5, verticalOffset + size / 72, lines)
+
+    // verticalOffset = verticalOffset + (size / 72)*(lines.length + 1);
+    // var words = '据了解，自2012年实现国家财政性教育经费占GDP比例4%目标以来，这一比例连续8年保持在4%以上。全国一般公共预算教育经费为34648.57亿元，比上年的31992.73亿元增长8.30%，占一般公共预算支出238858.37亿元的比例为14.51%，比上年的14.48%提高了0.03个百分点';
+    // lines = doc.splitTextToSize(words, 7.5)
+    // doc.text(0.5, verticalOffset + size / 72, lines)
+
+
+    // verticalOffset = verticalOffset + (size / 72)*(lines.length + 1);
+    // var words = '报告认为，当前，我国网络慈善特别是通过大病求助网络平台进行的个人求助缺少直接有效的法律规制、个人求助借助网络从熟人圈走向陌生的公众而成为事实上、法律意义的公开募捐，其中出现的不良个案对网络慈善的发展带来了不利影响，存在监管盲区。报告建议完善网络慈善募捐法律法规和政策体系';
+    // lines = doc.splitTextToSize(words, 7.5)
+    // doc.text(0.5, verticalOffset + size / 72, lines)
+
+
+
+    // // add new page  添加新的page 后坐标需要重置，重新计算
+    // doc.addPage();
+    // var words = 'add new  page  检方指控，2003年11月至2012年3月期间，吴湛辉担任东莞市环保局局长，利用其负责该局全面工作的职务便利，为东莞市恒泰环保设备有限公司负责人赖洪中谋取东莞市环保局下属的工业废物处理站承包经营权，多次收受赖洪中贿送的人民币共计4970万元';
+    // lines = doc.splitTextToSize(words, 7.5)
+    // doc.text(0.5, verticalOffset + size / 72, lines)
+    // doc.save('test120.pdf');
+
+    // 获取到剧本名字保存成pdf
+    
+    
+
+
+    //分割**************************************************************************************
+    // 以下为测试打印不同字号和字体
+    // var doc = new jsPDF();
+    // doc.addFileToVFS('sourcehansanssc-normal-normal.ttf', font);   
+    // doc.addFont('sourcehansanssc-normal-normal.ttf', 'sourcehansanssc-normal', 'normal');  
+    // doc.setFont('sourcehansanssc-normal');  // 设置字体
+    // doc.setFontSize(8);
+    // doc.text(20, 180, '简体中文、繁體体中文、English、ジャパン、한국어、你好啊');
+    // doc.text("This is the default font---------test as  you  know she is a bicth in beach  you know but do you wanna to cry  wait dont wait .", 20, 20);
+    // doc.setFont("courier", "normal");
+    // doc.setFontSize(15);
+    // doc.text("15This is courier normal", 20, 30);
+    // doc.setFont("times", "italic");
+    // doc.setFontSize(14);
+    // doc.text("This is times italic.", 20, 40);
+    // doc.setFont("helvetica", "bold");
+    // doc.text("14This is helvetica bold.", 20, 50);
+    // doc.setFont("courier", "bolditalic");
+    // doc.setFontSize(13);
+    // doc.text("13This is courier bolditalic.", 20, 60);
+    // doc.setFont("times", "normal");
+    // doc.setFontSize(10); // 设置即将到来的文字的字体大小
+    // doc.text("10This is centred text.", 105, 80, null, null, "center");
+    // doc.text("And a little bit more underneath it.", 105, 90, null, null, "center");
+    // doc.text("This is right aligned text", 200, 100, null, null, "right");
+    // doc.text("And some more", 200, 110, null, null, "right");
+    // doc.text("Back to left", 20, 120);
+    // doc.text("10 degrees rotated", 20, 140, null, 10);
+    // doc.text("-10 degrees rotated", 20, 160, null, -10);
+    // doc.setFont('sourcehansanssc-normal');  // 设置字体
+    // doc.setFontSize(5);
+    // doc.text(20, 200, '5测试成功了哟');
+    // doc.text(20, 210, '5真开心');
+    // doc.save('test11.pdf');
+
+
+
+    // 以下打印英文测试换行  2020/11/04
+    // 参考：  https://www.hangge.com/blog/cache/detail_2206.html
+    //        https://blog.csdn.net/yzjyhp/article/details/49980847
+    // var doc = new jsPDF('p','in');
+    // var sizes = [12, 16, 20];
+    // var fonts = [['Times','Roman'],['Helvetica',''], ['Times','Italic']];
+    // var verticalOffset = 0.5;
+    // var words = 'Welcome to hangge.com. Welcome to hangge.com. Welcome to hangge.com.Welcome to hangge.com.Welcome to hangge.com.Welcome to hangge.com.Welcome to hangge.com.Welcome to hangge.com.Welcome to hangge.com.'
+    
+    // for (var i in fonts){
+    //     if (fonts.hasOwnProperty(i)) {
+    //         var font = fonts[i]
+    //         var size = sizes[i]
+    
+    //         //将文字自动换行显示
+    //         lines = doc.setFont(font[0], font[1])
+    //                     .setFontSize(size)
+    //                     .splitTextToSize(words, 7.5)
+    //         doc.text(0.5, verticalOffset + size / 72, lines)
+    
+    //         verticalOffset += (lines.length + 0.5) * size / 72
+    //     }
+    // }
+    
+    // doc.save('Test1111.pdf');
+
+
+
+
+
+    /* 直接获取每页的返回数据  通过https://www.thisamericanlife.org/archive 获取去指定数量a的数据并展示，如果添加了参数，archive?page=2 获取指定数量a以后的数据的长度为x 的数据
+
+    curl --request GET 'https://www.thisamericanlife.org/archive?page=2' \
+    --header 'referer: https://www.thisamericanlife.org/archive' \
+    --header 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.193 Safari/537.36' \
+    --header 'x-requested-with: XMLHttpRequest' 
+    */
+</script>
+</html>
+
+
+
