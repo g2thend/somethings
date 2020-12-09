@@ -44,3 +44,8 @@ lagousipder 爬取拉钩职位并保存于mongodb数据库,其中在抓取职位
 根据上一个项目的数据,组成特别的数据格式后可以在高德地图上展示
 
 ![1596680594445](pic/1596680594445.png)
+
+#### 8,html4thisamericanlife
+使用前端html+javascript 抽取并转化thisamericanlife
+见: https://www.cnblogs.com/g2thend/p/14106411.html
+
