@@ -22,7 +22,7 @@ Jinja2==2.8
 language-selector==0.1
 loguru==0.5.1
 louis==2.6.4
-lxml==4.5.1
+lxml==4.6.3
 Mako==1.0.3
 MarkupSafe==0.23
 oauthlib==1.0.3
